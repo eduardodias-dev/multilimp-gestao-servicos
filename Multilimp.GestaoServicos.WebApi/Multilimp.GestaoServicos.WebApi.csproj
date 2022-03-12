@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GestaoServicos.Application\GestaoServicos.Application.csproj" />
     <ProjectReference Include="..\GestaoServicos.Infra.Util\GestaoServicos.Infra.Util.csproj" />
   </ItemGroup>
 

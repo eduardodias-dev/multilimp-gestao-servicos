@@ -1,6 +1,9 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using GestaoServicos.Application;
+using GestaoServicos.Domain.Repository;
 using GestaoServicos.Domain.Services;
+using GestaoServicos.Infra.Data.Repositories;
 using GestaoServicos.Infra.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +33,8 @@ namespace Multilimp.GestaoServicos.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRelatorioService, RelatorioService>();
+            services.AddScoped<IOrdemServicoService, OrdemServicoService>();
+            services.AddScoped<IOrdemServicoRepository, OrdemServicoRepository>();
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
             services.AddControllers();
