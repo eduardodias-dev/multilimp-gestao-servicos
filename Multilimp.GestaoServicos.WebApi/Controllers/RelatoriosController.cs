@@ -22,8 +22,7 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
         [HttpGet]
         public IActionResult GerarPDF()
         {
-            var pdf = _relatorioService.GerarPDF();
-            return File(pdf, "application/pdf", "TestePdf.pdf");
+            return Ok("teste");
         }
     }
 }

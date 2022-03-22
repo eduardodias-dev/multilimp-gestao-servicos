@@ -9,6 +9,7 @@ namespace GestaoServicos.Domain.Entities
     {
         public int OrdemServicoId { get; set; }
         public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
         public StatusOrdemServico Status { get; set; }
         public string Descricao { get; set; }
         public string Observacoes { get; set; }

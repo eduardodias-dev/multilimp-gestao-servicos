@@ -1,5 +1,6 @@
 ﻿using GestaoServicos.Domain.Repository;
 using GestaoServicos.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,13 +33,23 @@ namespace GestaoServicos.Infra.Data.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public IQueryable<T> Get(Expression<Func<T, bool>> expression)
+        public IQueryable<T> Get(Expression<Func<T, bool>> expression, string include = null)
         {
+            if (!string.IsNullOrWhiteSpace(include))
+            {
+                return _context.Set<T>().Where(expression).Include(include).AsQueryable();
+            }
+
             return _context.Set<T>().Where(expression).AsQueryable();
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(string include = null)
         {
+            if (!string.IsNullOrWhiteSpace(include))
+            {
+                return _context.Set<T>().Include(include).AsQueryable();
+            }
+
             return _context.Set<T>().AsQueryable();
         }
 

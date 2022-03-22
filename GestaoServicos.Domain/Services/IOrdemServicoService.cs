@@ -3,6 +3,7 @@ using GestaoServicos.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GestaoServicos.Domain.Services
 {
@@ -11,5 +12,7 @@ namespace GestaoServicos.Domain.Services
         public void CriarOrdemServico(OrdemServico ordemServico);
 
         public IEnumerable<OrdemServico> ListarOrdemServico(FiltroOrdemServicoModel filtro);
+
+        public Task<byte[]> GerarRelatorioOrdemServico(int idOrdemServico);
     }
 }

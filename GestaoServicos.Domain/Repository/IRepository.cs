@@ -10,8 +10,8 @@ namespace GestaoServicos.Domain.Repository
     public interface IRepository<T>
     {
         Task<T> Get(int id);
-        IQueryable<T> GetAll();
-        IQueryable<T> Get(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAll(string include = null);
+        IQueryable<T> Get(Expression<Func<T, bool>> expression, string include = null);
         void Add(T entity);
         void Remove(T entity);
         void Update(T entity);

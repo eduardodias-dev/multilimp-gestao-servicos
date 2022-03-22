@@ -3,7 +3,7 @@ using DinkToPdf.Contracts;
 using GestaoServicos.Application;
 using GestaoServicos.Domain.Repository;
 using GestaoServicos.Domain.Services;
-using GestaoServicos.Infra.Data.Repositories;
+using GestaoServicos.Infra.InjecaoDependencias;
 using GestaoServicos.Infra.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,12 +32,10 @@ namespace Multilimp.GestaoServicos.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IRelatorioService, RelatorioService>();
-            services.AddScoped<IOrdemServicoService, OrdemServicoService>();
-            services.AddScoped<IOrdemServicoRepository, OrdemServicoRepository>();
-            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+            InjecaoDependencias.RegistrarDependencias(services);
 
             services.AddControllers();
+            services.AddSwaggerGen();
 
         }
 
@@ -47,6 +45,8 @@ namespace Multilimp.GestaoServicos.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();

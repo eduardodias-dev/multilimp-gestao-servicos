@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoServicos.Infra.Data",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoServicos.Infra.Util", "GestaoServicos.Infra.Util\GestaoServicos.Infra.Util.csproj", "{6CBD0094-AA97-46BA-827B-2A49079744F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoServicos.Application", "GestaoServicos.Application\GestaoServicos.Application.csproj", "{0DD6B8F6-D13A-481C-8FF9-6C3F9B162490}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoServicos.Application", "GestaoServicos.Application\GestaoServicos.Application.csproj", "{0DD6B8F6-D13A-481C-8FF9-6C3F9B162490}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoServicos.Infra.InjecaoDependencias", "GestaoServicos.Infra.InjecaoDependencias\GestaoServicos.Infra.InjecaoDependencias.csproj", "{C6FBC760-8B1D-4A36-920A-AD8C02F75063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0DD6B8F6-D13A-481C-8FF9-6C3F9B162490}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DD6B8F6-D13A-481C-8FF9-6C3F9B162490}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DD6B8F6-D13A-481C-8FF9-6C3F9B162490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6FBC760-8B1D-4A36-920A-AD8C02F75063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6FBC760-8B1D-4A36-920A-AD8C02F75063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6FBC760-8B1D-4A36-920A-AD8C02F75063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6FBC760-8B1D-4A36-920A-AD8C02F75063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

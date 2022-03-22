@@ -6,10 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.23">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GestaoServicos.Application\GestaoServicos.Application.csproj" />
+    <ProjectReference Include="..\GestaoServicos.Infra.InjecaoDependencias\GestaoServicos.Infra.InjecaoDependencias.csproj" />
     <ProjectReference Include="..\GestaoServicos.Infra.Util\GestaoServicos.Infra.Util.csproj" />
   </ItemGroup>
 
