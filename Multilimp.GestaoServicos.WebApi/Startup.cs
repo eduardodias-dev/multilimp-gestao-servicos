@@ -34,7 +34,7 @@ namespace Multilimp.GestaoServicos.WebApi
         {
             InjecaoDependencias.RegistrarDependencias(services);
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSwaggerGen();
 
         }

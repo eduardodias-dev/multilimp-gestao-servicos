@@ -23,7 +23,7 @@ namespace GestaoServicos.Infra.Data.Repositories
             _context.Set<T>().Add(entity);
         }
 
-        public void Commit(T entity)
+        public void Commit()
         {
             _context.SaveChanges();
         }

@@ -20,9 +20,10 @@ namespace GestaoServicos.Application
             _relatorioService = relatorioService;
         }
 
-        public void CriarOrdemServico(OrdemServico ordemServico)
+        public void CriarOrdemServico(CriarOrdemServicoModel ordemServicoModel)
         {
-            _ordemServicoRepository.Add(ordemServico);   
+            _ordemServicoRepository.Add(CriarOrdemServicoModelParaOrdemServico(ordemServicoModel));
+            _ordemServicoRepository.Commit();
         }
 
         public async Task<byte[]> GerarRelatorioOrdemServico(int idOrdemServico)
@@ -37,6 +38,19 @@ namespace GestaoServicos.Application
         public IEnumerable<OrdemServico> ListarOrdemServico(FiltroOrdemServicoModel filtro)
         {
             return _ordemServicoRepository.GetAll("Cliente");
+        }
+
+        private OrdemServico CriarOrdemServicoModelParaOrdemServico(CriarOrdemServicoModel model)
+        {
+            return new OrdemServico
+            {
+                ClienteId = model.ClienteId,
+                DataAgendamento = model.DataAgendamento,
+                DataExecucao = model.DataExecucao,
+                Descricao = model.Descricao,
+                Observacoes = model.Observacoes,
+                Status = model.Status
+            };
         }
     }
 }

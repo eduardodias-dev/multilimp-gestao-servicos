@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GestaoServicos.Domain.Repository
 {
-    public interface IEnderecoRepository : IRepository<Telefone>
+    public interface IEnderecoRepository : IRepository<Endereco>
     {
     }
 }

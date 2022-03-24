@@ -15,6 +15,6 @@ namespace GestaoServicos.Domain.Repository
         void Add(T entity);
         void Remove(T entity);
         void Update(T entity);
-        void Commit(T entity);
+        void Commit();
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GestaoServicos.Domain.Repository
 {
-    interface ITelefoneRepository : IRepository<Telefone>
+    public interface ITelefoneRepository : IRepository<Telefone>
     {
     }
 }

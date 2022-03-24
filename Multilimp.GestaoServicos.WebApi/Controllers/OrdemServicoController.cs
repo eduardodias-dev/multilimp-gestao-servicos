@@ -33,5 +33,20 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
 
             return File(file, "application/octet-stream", "ordemServico.pdf");
         }
+
+        [HttpPost]
+        public IActionResult CriarOrdemServico([FromBody] CriarOrdemServicoModel model)
+        {
+            try
+            {
+                _ordemServicoService.CriarOrdemServico(model);
+
+                return Ok("Inserido com sucesso.");
+
+            }catch(Exception e)
+            {
+                return BadRequest("Exceção inesperada.");
+            }
+        }
     }
 }

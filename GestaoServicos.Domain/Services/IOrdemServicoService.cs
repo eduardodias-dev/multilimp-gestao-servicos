@@ -9,7 +9,7 @@ namespace GestaoServicos.Domain.Services
 {
     public interface IOrdemServicoService
     {
-        public void CriarOrdemServico(OrdemServico ordemServico);
+        public void CriarOrdemServico(CriarOrdemServicoModel ordemServicoModel);
 
         public IEnumerable<OrdemServico> ListarOrdemServico(FiltroOrdemServicoModel filtro);
 
