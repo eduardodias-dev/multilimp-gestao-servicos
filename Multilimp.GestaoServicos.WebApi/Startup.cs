@@ -36,6 +36,7 @@ namespace Multilimp.GestaoServicos.WebApi
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSwaggerGen();
+            services.AddCors();
 
         }
 
@@ -48,6 +49,8 @@ namespace Multilimp.GestaoServicos.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

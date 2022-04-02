@@ -23,8 +23,8 @@ namespace GestaoServicos.Infra.Util
             var globalSettings = new GlobalSettings
             {
                 ColorMode = ColorMode.Color,
-                Orientation = Orientation.Landscape,
-                PaperSize = PaperKind.A4,
+                Orientation = Orientation.Portrait,
+                PaperSize = PaperKind.A4Small,
                 Margins = new MarginSettings { Top = 10 },
                 DocumentTitle = "PDF Report",
                 Out = path

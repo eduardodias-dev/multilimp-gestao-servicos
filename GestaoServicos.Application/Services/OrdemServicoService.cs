@@ -1,4 +1,5 @@
-﻿using GestaoServicos.Domain.Entities;
+﻿using AutoMapper;
+using GestaoServicos.Domain.Entities;
 using GestaoServicos.Domain.Factory.Relatorio;
 using GestaoServicos.Domain.Models;
 using GestaoServicos.Domain.Repository;
@@ -14,15 +15,21 @@ namespace GestaoServicos.Application
     {
         private readonly IOrdemServicoRepository _ordemServicoRepository;
         private readonly IRelatorioService _relatorioService;
-        public OrdemServicoService(IOrdemServicoRepository ordemServicoRepository, IRelatorioService relatorioService)
+        private readonly IMapper _mapper;
+        public OrdemServicoService(IOrdemServicoRepository ordemServicoRepository, 
+                                    IRelatorioService relatorioService,
+                                    IMapper mapper)
         {
             _ordemServicoRepository = ordemServicoRepository;
             _relatorioService = relatorioService;
+            _mapper = mapper;
         }
 
         public void CriarOrdemServico(CriarOrdemServicoModel ordemServicoModel)
         {
-            _ordemServicoRepository.Add(CriarOrdemServicoModelParaOrdemServico(ordemServicoModel));
+            var ordemServico = _mapper.Map<OrdemServico>(ordemServicoModel);
+
+            _ordemServicoRepository.Add(ordemServico);
             _ordemServicoRepository.Commit();
         }
 
@@ -35,22 +42,11 @@ namespace GestaoServicos.Application
             return file;
         }
 
-        public IEnumerable<OrdemServico> ListarOrdemServico(FiltroOrdemServicoModel filtro)
+        public IEnumerable<VisualizarOrdemServicoModel> ListarOrdemServico(FiltroOrdemServicoModel filtro)
         {
-            return _ordemServicoRepository.GetAll("Cliente");
-        }
+            var listOrdemServico = _mapper.Map<List<VisualizarOrdemServicoModel>>(_ordemServicoRepository.GetAll("Cliente"));
 
-        private OrdemServico CriarOrdemServicoModelParaOrdemServico(CriarOrdemServicoModel model)
-        {
-            return new OrdemServico
-            {
-                ClienteId = model.ClienteId,
-                DataAgendamento = model.DataAgendamento,
-                DataExecucao = model.DataExecucao,
-                Descricao = model.Descricao,
-                Observacoes = model.Observacoes,
-                Status = model.Status
-            };
+            return listOrdemServico;
         }
     }
 }

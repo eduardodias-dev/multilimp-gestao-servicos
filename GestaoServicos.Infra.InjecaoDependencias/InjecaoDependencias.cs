@@ -1,6 +1,7 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
 using GestaoServicos.Application;
+using GestaoServicos.Application.Mapper;
 using GestaoServicos.Domain.Repository;
 using GestaoServicos.Domain.Services;
 using GestaoServicos.Infra.Data.Context;
@@ -18,6 +19,7 @@ namespace GestaoServicos.Infra.InjecaoDependencias
         public static void RegistrarDependencias(IServiceCollection services)
         {
             services.AddDbContext<GestaoServicosDbContext>();
+            services.AddAutoMapper(typeof(MappingProfile));
 
             RegistrarServicos(services);
             RegistrarRepositorios(services);

@@ -1,4 +1,5 @@
-﻿using GestaoServicos.Domain.Entities;
+﻿using AutoMapper;
+using GestaoServicos.Domain.Entities;
 using GestaoServicos.Domain.Models;
 using GestaoServicos.Domain.Repository;
 using GestaoServicos.Domain.Services;
@@ -15,21 +16,23 @@ namespace GestaoServicos.Application
         private readonly IClienteRepository _clienteRepository;
         private readonly ITelefoneRepository _telefoneRepository;
         private readonly IEnderecoRepository _enderecoRepository;
-
+        private readonly IMapper _mapper;
         public ClienteService(IClienteRepository clienteRepository,
                               IEnderecoRepository enderecoRepository,
-                              ITelefoneRepository telefoneRepository)
+                              ITelefoneRepository telefoneRepository,
+                              IMapper mapper)
         {
             _clienteRepository = clienteRepository;
             _telefoneRepository = telefoneRepository;
             _enderecoRepository = enderecoRepository;
+            _mapper = mapper;
         }
 
         public void CriarCliente(CriarClienteModel clienteModel)
         {
-            var endereco = CriarClienteModelParaCliente(clienteModel);
+            var cliente = _mapper.Map<Cliente>(clienteModel);
 
-            _clienteRepository.Add(endereco);
+            _clienteRepository.Add(cliente);
             _clienteRepository.Commit();
         }
 
@@ -82,40 +85,5 @@ namespace GestaoServicos.Application
             _clienteRepository.Commit();
         }
 
-        private Cliente CriarClienteModelParaCliente(CriarClienteModel model)
-        {
-            return new Cliente
-            {
-                DataMatricula = model.DataMatricula,
-                Nome = model.Nome,
-                Status = model.Status,
-                Enderecos = model.Enderecos?.Select(CriarEnderecoModelParaEndereco).ToList(),
-                Telefones = model.Telefones?.Select(CriarTelefoneModelParaTelefone).ToList()
-            };
-        }
-
-        private Endereco CriarEnderecoModelParaEndereco(CriarEnderecoModel model)
-        {
-            return new Endereco
-            {
-                Cidade = model.Cidade,
-                ClienteId = model.ClienteId,
-                Complemento = model.Complemento,
-                Logradouro = model.Logradouro,
-                Numero = model.Numero,
-                UF = model.UF
-            };
-        }
-
-        private Telefone CriarTelefoneModelParaTelefone(CriarTelefoneModel model)
-        {
-            return new Telefone
-            {
-                ClienteId = model.ClienteId,
-                DDD = model.DDD,
-                Numero = model.Numero,
-                
-            };
-        }
     }
 }

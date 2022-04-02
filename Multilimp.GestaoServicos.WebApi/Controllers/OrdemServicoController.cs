@@ -26,12 +26,12 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
             return Ok(_ordemServicoService.ListarOrdemServico(new FiltroOrdemServicoModel()));
         }
 
-        [HttpGet("imprimir-ordem-servico")]
+        [HttpGet("imprimir-ordem-servico/{idOrdemServico}")]
         public async Task<IActionResult> ImprimirOrdemServico(int idOrdemServico)
         {
             var file = await _ordemServicoService.GerarRelatorioOrdemServico(idOrdemServico);
 
-            return File(file, "application/octet-stream", "ordemServico.pdf");
+            return File(file, "application/pdf");
         }
 
         [HttpPost]

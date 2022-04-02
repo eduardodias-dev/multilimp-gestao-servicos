@@ -15,6 +15,7 @@ namespace GestaoServicos.Infra.Data.Context
         public DbSet<OrdemServico> OrdemServicos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Funcionario> Funcionario { get; set; }
 
         public GestaoServicosDbContext(IConfiguration configuration)
         {

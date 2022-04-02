@@ -22,6 +22,9 @@ namespace GestaoServicos.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CPFCNPJ")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DataMatricula")
                         .HasColumnType("TEXT");
 
@@ -41,6 +44,9 @@ namespace GestaoServicos.Infra.Data.Migrations
                     b.Property<int>("EnderecoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Bairro")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Cidade")
                         .HasColumnType("TEXT");
@@ -67,6 +73,28 @@ namespace GestaoServicos.Infra.Data.Migrations
                     b.ToTable("Enderecos");
                 });
 
+            modelBuilder.Entity("GestaoServicos.Domain.Entities.Funcionario", b =>
+                {
+                    b.Property<int>("FuncionarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("TelefoneId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("FuncionarioId");
+
+                    b.HasIndex("TelefoneId");
+
+                    b.ToTable("Funcionario");
+                });
+
             modelBuilder.Entity("GestaoServicos.Domain.Entities.OrdemServico", b =>
                 {
                     b.Property<int>("OrdemServicoId")
@@ -82,8 +110,14 @@ namespace GestaoServicos.Infra.Data.Migrations
                     b.Property<DateTime>("DataExecucao")
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("Desconto")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("FuncionarioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Observacoes")
                         .HasColumnType("TEXT");
@@ -91,7 +125,17 @@ namespace GestaoServicos.Infra.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("Valor")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("ValorTotal")
+                        .HasColumnType("REAL");
+
                     b.HasKey("OrdemServicoId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("FuncionarioId");
 
                     b.ToTable("OrdemServicos");
                 });
@@ -125,6 +169,26 @@ namespace GestaoServicos.Infra.Data.Migrations
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GestaoServicos.Domain.Entities.Funcionario", b =>
+                {
+                    b.HasOne("GestaoServicos.Domain.Entities.Telefone", "Telefone")
+                        .WithMany()
+                        .HasForeignKey("TelefoneId");
+                });
+
+            modelBuilder.Entity("GestaoServicos.Domain.Entities.OrdemServico", b =>
+                {
+                    b.HasOne("GestaoServicos.Domain.Entities.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GestaoServicos.Domain.Entities.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("FuncionarioId");
                 });
 
             modelBuilder.Entity("GestaoServicos.Domain.Entities.Telefone", b =>

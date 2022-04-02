@@ -11,7 +11,7 @@ namespace GestaoServicos.Domain.Services
     {
         public void CriarOrdemServico(CriarOrdemServicoModel ordemServicoModel);
 
-        public IEnumerable<OrdemServico> ListarOrdemServico(FiltroOrdemServicoModel filtro);
+        public IEnumerable<VisualizarOrdemServicoModel> ListarOrdemServico(FiltroOrdemServicoModel filtro);
 
         public Task<byte[]> GerarRelatorioOrdemServico(int idOrdemServico);
     }
