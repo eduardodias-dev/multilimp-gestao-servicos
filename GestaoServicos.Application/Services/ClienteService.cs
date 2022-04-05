@@ -38,14 +38,8 @@ namespace GestaoServicos.Application
 
         public IEnumerable<Cliente> ListarClientes(FiltroClienteModel filtro)
         {
-            var clientes = _clienteRepository.GetAll("Telefones");
-
-            foreach(var cliente in clientes)
-            {
-                cliente.Enderecos = _enderecoRepository.Get(x => x.ClienteId == cliente.ClienteId).ToList();
-                cliente.Telefones = _telefoneRepository.Get(x => x.ClienteId == cliente.ClienteId).ToList();
-            }
-
+            var clientes = _clienteRepository.BuscarClientesComDados();
+            
             return clientes;
         }
 

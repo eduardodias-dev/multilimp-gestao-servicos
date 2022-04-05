@@ -20,7 +20,7 @@ namespace GestaoServicos.Domain.Models
         public VisualizarEnderecoModel Endereco { get; set; }
         public double Valor { get; set; }
         public double Desconto { get; set; }
-        public double ValorTotal { get; set; }
+        public double ValorTotal => Valor - Desconto;
         public string NomeCliente => $"{Cliente?.Nome}";
         public string TelefoneCompleto => $"{Telefone?.DDD} {Telefone?.Numero}"; 
         public string EnderecoCompleto => $"{Endereco?.Logradouro},{Endereco?.Numero} {Endereco?.Complemento ?? ""}, {Endereco?.Cidade}/{Endereco?.UF}"; 

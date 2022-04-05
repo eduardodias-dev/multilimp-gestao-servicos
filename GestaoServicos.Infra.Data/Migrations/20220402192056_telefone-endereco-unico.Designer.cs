@@ -3,14 +3,16 @@ using System;
 using GestaoServicos.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GestaoServicos.Infra.Data.Migrations
 {
     [DbContext(typeof(GestaoServicosDbContext))]
-    partial class GestaoServicosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220402192056_telefone-endereco-unico")]
+    partial class telefoneenderecounico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

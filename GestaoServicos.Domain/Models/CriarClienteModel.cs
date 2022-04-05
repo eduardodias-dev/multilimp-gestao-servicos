@@ -10,7 +10,7 @@ namespace GestaoServicos.Domain.Models
         public string Nome { get; set; }
         public StatusCliente Status { get; set; }
         public DateTime DataMatricula { get; set; } = DateTime.Now;
-        public ICollection<CriarEnderecoModel> Enderecos { get; set; }
-        public ICollection<CriarTelefoneModel> Telefones { get; set; }
+        public CriarEnderecoModel Endereco { get; set; }
+        public CriarTelefoneModel Telefone { get; set; }
     }
 }

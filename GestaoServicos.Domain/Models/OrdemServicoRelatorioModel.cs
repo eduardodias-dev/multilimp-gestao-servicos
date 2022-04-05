@@ -7,6 +7,6 @@ namespace GestaoServicos.Domain.Models
 {
     public class OrdemServicoRelatorioModel
     {
-        public OrdemServico OrdemServico { get; set; }
+        public VisualizarOrdemServicoModel OrdemServico { get; set; }
     }
 }

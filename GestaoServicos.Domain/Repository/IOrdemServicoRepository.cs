@@ -7,5 +7,6 @@ namespace GestaoServicos.Domain.Repository
 {
     public interface IOrdemServicoRepository : IRepository<OrdemServico>
     {
+        public OrdemServico BuscarOrdemServicoDetalhada(int id);
     }
 }

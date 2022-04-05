@@ -31,8 +31,8 @@ namespace GestaoServicos.Application.Mapper
             CreateMap<CriarEnderecoModel, Endereco>();
 
             CreateMap<OrdemServico, VisualizarOrdemServicoModel>()
-                    .ForMember(x => x.Telefone, x => x.MapFrom(y => y.Cliente.Telefones.FirstOrDefault()))
-                    .ForMember(x => x.Endereco, x => x.MapFrom(y => y.Cliente.Enderecos.FirstOrDefault()));
+                    .ForMember(x => x.Telefone, x => x.MapFrom(y => y.Cliente.Telefone))
+                    .ForMember(x => x.Endereco, x => x.MapFrom(y => y.Cliente.Endereco));
 
             CreateMap<Telefone, VisualizarTelefoneModel>();
             CreateMap<Endereco, VisualizarEnderecoModel>();

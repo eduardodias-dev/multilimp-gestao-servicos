@@ -12,7 +12,7 @@ namespace GestaoServicos.Infra.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly GestaoServicosDbContext _context;
+        protected readonly GestaoServicosDbContext _context;
         public Repository(GestaoServicosDbContext context)
         {
             _context = context;

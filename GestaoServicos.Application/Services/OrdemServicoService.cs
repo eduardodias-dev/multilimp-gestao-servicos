@@ -6,6 +6,7 @@ using GestaoServicos.Domain.Repository;
 using GestaoServicos.Domain.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,9 +36,10 @@ namespace GestaoServicos.Application
 
         public async Task<byte[]> GerarRelatorioOrdemServico(int idOrdemServico)
         {
-            var ordemServico = await _ordemServicoRepository.Get(idOrdemServico);
+            var ordemServico = _ordemServicoRepository.BuscarOrdemServicoDetalhada(idOrdemServico);
 
-            var file = _relatorioService.GerarPDF(new OrdemServicoRelatorioFactory(new OrdemServicoRelatorioModel { OrdemServico = ordemServico }));
+            var file = _relatorioService.GerarPDF(new OrdemServicoRelatorioFactory(
+                                                            new OrdemServicoRelatorioModel { OrdemServico = _mapper.Map<VisualizarOrdemServicoModel>(ordemServico) }));
 
             return file;
         }

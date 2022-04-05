@@ -41,5 +41,39 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
                 return BadRequest("Exceção inesperada.");
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult RemoverCliente(int id)
+        {
+            try
+            {
+                _clienteService.RemoverCliente(id);
+
+                return Ok("Removido com sucesso");
+
+            }catch(Exception ex)
+            {
+                return BadRequest("Exceção inesperada");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult EditarCliente([FromBody] AtualizarClienteModel clienteModel, int id)
+        {
+            try
+            {
+                if (id != clienteModel.ClienteId) return BadRequest("Id diferente");
+
+                _clienteService.AtualizarCliente(clienteModel);
+
+                return Ok("Removido com sucesso");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Exceção inesperada");
+            }
+        }
+
     }
 }

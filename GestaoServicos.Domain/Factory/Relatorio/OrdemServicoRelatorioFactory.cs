@@ -32,7 +32,7 @@ namespace GestaoServicos.Domain.Factory.Relatorio
                                 <tbody>
                                     <tr>
                                         <td rowspan='4' class='align-center'>
-                                            <img src='{Directory.GetCurrentDirectory()}/logo_multilimp.jpg' width='200' />
+                                            <img src='{Directory.GetCurrentDirectory()}/logo_multilimp.jpg' width='100' />
                                         </td>
                                         <td rowspan='2' class='align-center'>Telefones</td>
                                         <td rowspan='3' colspan='2' class='align-center'>
@@ -81,19 +81,19 @@ namespace GestaoServicos.Domain.Factory.Relatorio
                                                 </tr>
                                                 <tr>
                                                     <td>Endereço:</td>
-                                                    <td colspan='4'>{ordemServico.Cliente.Enderecos.FirstOrDefault()?.Logradouro}</td>
+                                                    <td colspan='4'>{ordemServico.Cliente.Endereco?.Logradouro}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Bairro:</td>
-                                                    <td colspan='2'>{ordemServico.Cliente.Enderecos.FirstOrDefault()?.Bairro}</td>
+                                                    <td colspan='2'>{ordemServico.Cliente.Endereco?.Bairro}</td>
                                                     <td class='align-right'>Fone:</td>
-                                                    <td>{ordemServico.Cliente.Telefones.FirstOrDefault()?.DDD} {ordemServico.Cliente.Telefones.FirstOrDefault()?.Numero}</td>
+                                                    <td>{ordemServico.Cliente.Telefone?.DDD} {ordemServico.Cliente.Telefone?.Numero}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Cidade:</td>
-                                                    <td colspan='2'>{ordemServico.Cliente.Enderecos.FirstOrDefault()?.Cidade}</td>
+                                                    <td colspan='2'>{ordemServico.Cliente.Endereco?.Cidade}</td>
                                                     <td class='align-right'>UF:</td>
-                                                    <td>{ordemServico.Cliente.Enderecos.FirstOrDefault()?.UF}</td>
+                                                    <td>{ordemServico.Cliente.Endereco?.UF}</td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -129,11 +129,11 @@ namespace GestaoServicos.Domain.Factory.Relatorio
                                                 </tr>
                                                 <tr>
                                                     <td colspan='2' class='align-right'>Data da Execução:</td>
-                                                    <td class='align-center'>{ordemServico.DataExecucao}</td>
+                                                    <td class='align-center'>{ordemServico.DataExecucao.ToString("dd/MM/yyyy")}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan='2' class='align-right'>Vencimento da garantia:</td>
-                                                    <td class='align-center'>{ordemServico.DataExecucao.AddDays(ordemServico.DiasGarantia).ToString("dd/MM/yyyy")}</td>
+                                                    <td class='align-center'>{ordemServico.DataExecucao.AddDays(15).ToString("dd/MM/yyyy")}</td>
                                                 </tr>
                                             </table>
                                         </td>
