@@ -23,15 +23,32 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
         [HttpGet]
         public IActionResult GetOrdemServicos()
         {
-            return Ok(_ordemServicoService.ListarOrdemServico(new FiltroOrdemServicoModel()));
+            try
+            {
+                return Ok(_ordemServicoService.ListarOrdemServico(new FiltroOrdemServicoModel()));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Exceção inesperada. " + ex.Message);
+            }
+            
         }
 
         [HttpGet("imprimir-ordem-servico/{idOrdemServico}")]
         public async Task<IActionResult> ImprimirOrdemServico(int idOrdemServico)
         {
-            var file = await _ordemServicoService.GerarRelatorioOrdemServico(idOrdemServico);
+            try
+            {
+                var file = await _ordemServicoService.GerarRelatorioOrdemServico(idOrdemServico);
 
-            return File(file, "application/pdf", $"ordemservico_{idOrdemServico}.pdf");
+                return File(file, "application/pdf", $"ordemservico_{idOrdemServico}.pdf");
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("Exceção inesperada. " + ex.Message);
+            }
+            
         }
 
         [HttpPost]
@@ -45,7 +62,7 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
 
             }catch(Exception e)
             {
-                return BadRequest("Exceção inesperada.");
+                return BadRequest("Exceção inesperada. " + e.Message);
             }
         }
     }

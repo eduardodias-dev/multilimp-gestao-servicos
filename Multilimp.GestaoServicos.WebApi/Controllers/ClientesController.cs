@@ -22,9 +22,17 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
         [HttpGet]
         public IActionResult ListarClientes([FromQuery]FiltroClienteModel model)
         {
-            var clientes = _clienteService.ListarClientes(model);
+            try
+            {
+                var clientes = _clienteService.ListarClientes(model);
 
-            return Ok(clientes);
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Exceção inesperada. " + ex.Message);
+            }
+            
         }
 
         [HttpPost]
@@ -38,7 +46,7 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
 
             }catch(Exception ex)
             {
-                return BadRequest("Exceção inesperada.");
+                return BadRequest("Exceção inesperada. "+ex.Message);
             }
         }
 
@@ -53,7 +61,7 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
 
             }catch(Exception ex)
             {
-                return BadRequest("Exceção inesperada");
+                return BadRequest("Exceção inesperada" + ex.Message);
             }
         }
 
@@ -71,7 +79,7 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Exceção inesperada");
+                return BadRequest("Exceção inesperada. " + ex.Message);
             }
         }
 
