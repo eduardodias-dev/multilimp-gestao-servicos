@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GestaoServicos.Domain.Entities;
+using GestaoServicos.Domain.Enums;
 using GestaoServicos.Domain.Factory.Relatorio;
 using GestaoServicos.Domain.Models;
 using GestaoServicos.Domain.Repository;
@@ -28,7 +29,15 @@ namespace GestaoServicos.Application
 
         public void CriarOrdemServico(CriarOrdemServicoModel ordemServicoModel)
         {
+
+            if (ordemServicoModel.Status == StatusOrdemServico.Executado && (!ordemServicoModel.DataExecucao.HasValue))
+                throw new ApplicationException("Data de execução inválida");
+
+            if (ordemServicoModel.DataAgendamento > ordemServicoModel.DataExecucao)
+                throw new ApplicationException("Data de execução não pode ser maior que a data de Agendamento");
+
             var ordemServico = _mapper.Map<OrdemServico>(ordemServicoModel);
+
 
             _ordemServicoRepository.Add(ordemServico);
             _ordemServicoRepository.Commit();
@@ -46,7 +55,7 @@ namespace GestaoServicos.Application
 
         public IEnumerable<VisualizarOrdemServicoModel> ListarOrdemServico(FiltroOrdemServicoModel filtro)
         {
-            var listOrdemServico = _mapper.Map<List<VisualizarOrdemServicoModel>>(_ordemServicoRepository.GetAll("Cliente"));
+            var listOrdemServico = _mapper.Map<List<VisualizarOrdemServicoModel>>(_ordemServicoRepository.BuscarOrdensServicoDetalhadas());
 
             return listOrdemServico;
         }

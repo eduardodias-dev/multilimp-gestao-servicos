@@ -31,7 +31,7 @@ namespace Multilimp.GestaoServicos.WebApi.Controllers
         {
             var file = await _ordemServicoService.GerarRelatorioOrdemServico(idOrdemServico);
 
-            return File(file, "application/pdf");
+            return File(file, "application/pdf", $"ordemservico_{idOrdemServico}.pdf");
         }
 
         [HttpPost]

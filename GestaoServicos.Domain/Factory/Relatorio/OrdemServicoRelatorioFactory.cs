@@ -1,6 +1,7 @@
 ﻿using GestaoServicos.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,23 +32,21 @@ namespace GestaoServicos.Domain.Factory.Relatorio
                             <table border='2' style='width:100%;'>
                                 <tbody>
                                     <tr>
-                                        <td rowspan='4' class='align-center'>
-                                            <img src='{Directory.GetCurrentDirectory()}/logo_multilimp.jpg' width='100' />
+                                        <td colspan='2' class='align-center'>
+                                            <img src='{Directory.GetCurrentDirectory()}/logo_multilimp.jpg' width='120' />
                                         </td>
-                                        <td rowspan='2' class='align-center'>Telefones</td>
-                                        <td rowspan='3' colspan='2' class='align-center'>
+                                        <!-- <td rowspan='2' class='align-center'>Telefones</td> -->
+                                        <td colspan='2' class='align-center'>
                                             ORDEM DE SERVIÇO
                                         </td>
                                     </tr>
+                                    
                                     <tr>
-                                    </tr>
-                                    <tr>
-                                        <td class='align-center'>Telefone1</td> 
-                                    </tr>
-                                    <tr>
-                                        <td class='align-center'>Telefone2</td>
+                                        <td colspan='2' class='align-center'></td>
                                         <td class='align-right'>Nº</td>
                                         <td class='align-center'>{ordemServico.OrdemServicoId}</td>
+                                    </tr>
+                                    <tr>
                                     </tr>
                                     <tr>
                                         <td colspan='4'>
@@ -117,15 +116,15 @@ namespace GestaoServicos.Domain.Factory.Relatorio
                                                         Atendente: <br/>
                                                     </td>
                                                     <td class='align-right'>Orçamento:</td>
-                                                    <td class='align-center'>{ordemServico.Valor}</td>
+                                                    <td class='align-center'>{ordemServico.Valor.ToString("f2", CultureInfo.CreateSpecificCulture("pt-br"))}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class='align-right'>Desconto:</td>
-                                                    <td class='align-center'>{ordemServico.Desconto}</td>
+                                                    <td class='align-center'>{ordemServico.Desconto.ToString("f2", CultureInfo.CreateSpecificCulture("pt-br"))}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class='align-right'>TOTAL:</td>
-                                                    <td class='align-center'>{ordemServico.ValorTotal}</td>
+                                                    <td class='align-center'>{ordemServico.ValorTotal.ToString("f2", CultureInfo.CreateSpecificCulture("pt-br"))}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan='2' class='align-right'>Data da Execução:</td>

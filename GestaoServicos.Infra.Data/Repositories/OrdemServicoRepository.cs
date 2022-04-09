@@ -18,6 +18,7 @@ namespace GestaoServicos.Infra.Data.Repositories
                                join c in _context.Clientes on os.ClienteId equals c.ClienteId
                                join t in _context.Telefones on c.ClienteId equals t.ClienteId
                                join e in _context.Enderecos on c.ClienteId equals e.ClienteId
+                               where os.OrdemServicoId == id
                                select new OrdemServico
                                {
                                    Cliente = new Cliente
@@ -46,6 +47,44 @@ namespace GestaoServicos.Infra.Data.Repositories
                                };
 
             return ordemServico.FirstOrDefault();
+
+
+        }
+
+        public IQueryable<OrdemServico> BuscarOrdensServicoDetalhadas()
+        {
+            var ordemServicos = from os in _context.OrdemServicos
+                               join c in _context.Clientes on os.ClienteId equals c.ClienteId
+                               join t in _context.Telefones on c.ClienteId equals t.ClienteId
+                               join e in _context.Enderecos on c.ClienteId equals e.ClienteId
+                               select new OrdemServico
+                               {
+                                   Cliente = new Cliente
+                                   {
+                                       ClienteId = c.ClienteId,
+                                       CPFCNPJ = c.CPFCNPJ,
+                                       DataMatricula = c.DataMatricula,
+                                       Endereco = e,
+                                       Nome = c.Nome,
+                                       Status = c.Status,
+                                       Telefone = t
+                                   },
+                                   Desconto = os.Desconto,
+                                   DataExecucao = os.DataExecucao,
+                                   DataAgendamento = os.DataAgendamento,
+                                   ClienteId = os.ClienteId,
+                                   Descricao = os.Descricao,
+                                   Funcionario = os.Funcionario,
+                                   FuncionarioId = os.FuncionarioId,
+                                   Observacoes = os.Observacoes,
+                                   OrdemServicoId = os.OrdemServicoId,
+                                   Status = os.Status,
+                                   Valor = os.Valor,
+                                   ValorTotal = os.ValorTotal
+
+                               };
+
+            return ordemServicos;
 
 
         }

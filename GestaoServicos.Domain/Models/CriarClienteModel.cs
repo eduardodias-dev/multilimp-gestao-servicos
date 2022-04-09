@@ -9,6 +9,7 @@ namespace GestaoServicos.Domain.Models
     {
         public string Nome { get; set; }
         public StatusCliente Status { get; set; }
+        public string CPFCNPJ { get; set; }
         public DateTime DataMatricula { get; set; } = DateTime.Now;
         public CriarEnderecoModel Endereco { get; set; }
         public CriarTelefoneModel Telefone { get; set; }
