@@ -3,12 +3,14 @@ using DinkToPdf.Contracts;
 using GestaoServicos.Application;
 using GestaoServicos.Domain.Repository;
 using GestaoServicos.Domain.Services;
+using GestaoServicos.Infra.Data.Context;
 using GestaoServicos.Infra.InjecaoDependencias;
 using GestaoServicos.Infra.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,6 +48,12 @@ namespace Multilimp.GestaoServicos.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+                var context = serviceScope.ServiceProvider.GetService<GestaoServicosDbContext>();
+                context.Database.Migrate();
             }
 
             app.UseSwagger();
