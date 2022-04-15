@@ -70,6 +70,7 @@ namespace Multilimp.GestaoServicos.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
             });
         }
     }
